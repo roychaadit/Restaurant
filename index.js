@@ -44,7 +44,7 @@ app.get("/restaurant/menu/list",function(req,res){
 
    MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      console.log("Database created!");
+      
      
     
       var dbo = db.db("resturant");
@@ -64,7 +64,7 @@ app.delete("/restaurant/menu/item/:id",function(req,res){
 
    MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      console.log("Database created!");
+      
      
       var dbo = db.db("resturant");
       dbo.collection("menu").deleteOne({_id : ObjectId(req.params.id)},function(err, result) {
@@ -102,7 +102,7 @@ app.post("/restaurant/table/add",function(req,res) {
 
    MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      console.log("Database created!");
+      
      
     
       var dbo = db.db("resturant");
@@ -120,7 +120,7 @@ app.delete("/restaurant/table/:id",function(req,res){
 
    MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      console.log("Database created!");
+      
      
     
       var dbo = db.db("resturant");
@@ -142,7 +142,7 @@ app.post("/restaurant/waiter/add",function(req,res) {
  
     MongoClient.connect(url, function(err, db) {
        if (err) throw err;
-       console.log("Database created!");
+       
       
      
        var dbo = db.db("resturant");
@@ -160,7 +160,7 @@ app.post("/restaurant/waiter/add",function(req,res) {
 
    MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      console.log("Database created!");
+      
      
     
       var dbo = db.db("resturant");
@@ -178,7 +178,7 @@ app.delete("/restaurant/waiter/:id",function(req,res){
 
    MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      console.log("Database created!");
+      
      
     
       var dbo = db.db("resturant");
@@ -279,7 +279,7 @@ app.get("/restaurant/customer/list",function(req,res){
 
    MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      console.log("Database created!");
+      
      
     
       var dbo = db.db("resturant");
@@ -297,7 +297,7 @@ app.delete("/restaurant/customer/:id",function(req,res){
 
    MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      console.log("Database created!");
+      
      
     
       var dbo = db.db("resturant");
@@ -350,7 +350,7 @@ app.get("/restaurant/occupancy/list",function(req,res){
 
 //    MongoClient.connect(url, function(err, db) {
 //       if (err) throw err;
-//       console.log("Database created!");
+//       
      
     
 //       var dbo = db.db("resturant");
