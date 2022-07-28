@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+
+    
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <div class="row">
+          <div class="column">
+            <h1 class="header"><b>WELCOME TO ARC'S</b></h1>
+            <h2 class="header"><i>Quick food delivery!</i></h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column">
+            <table class="table table-bordered">
+              <thead>
+                <th>Table Id</th>
+                <th>Customer Id</th>
+                <th>Status</th>
+                <th>Change</th>
+              </thead>
+              <tbody>
+                <tr v-for="item in items">
+                  <td>{{item.tableId}}</td>
+                  <td>{{item.customerId}}</td>
+                  <td>{{item.booked}}</td>
+                  <td><button @click="del(item._id)">Change</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.0/vue.min.js"
+    integrity="sha512-2v91ndX8jAw9J2IAZ4RnH+lKMOi0PzyFJ1i6D69Nx1RlY2UJpy6r1WIo35HrRkHG4ARj1Xl/xyoh0X9ze+6Y2w=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
+
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        items: [],
+      },
+      created() {
+        this.getList();
+      },
+      methods: {
+        getList() {
+          const self = this;
+          this.$http
+            .get("/restaurant/occupancy/list")
+            .then(function (response) {
+              self.items = response.body;
+            });
+        },
+        del(tableId) {
+          const self = this;
+          this.$http
+            .put("/restaurant/occupancy/unbook/" + tableId)
+            .then(function () {
+              self.getList();
+            });
+        },
+      },
+    });
+  </script>
+  <style>
+    .header {
+      text-align: center;
+    }
+  </style>
+  <!-- <script>
+    load();
+
+
+     
+
+    function del(tableId) {
+      $.ajax({
+        url: "/restaurant/occupancy/unbook/"+tableId  ,
+        method: "PUT"
+      }).done((identities) => {
+        console.log(identities);
+      });
+
+      // $.ajax({ url: "/restaurant/occupancy/" + tableId, method: "DELETE" });
+      // load();
+    }
+
+    function load() {
+      $("#myTable").html(`<thead>
+            <th>Table ID</th>
+            <th>Customer ID</th>
+            <th>Reserved</th>
+            <th>Change Occupancy</th>
+            </thead>`);
+
+      $.ajax({
+        url: "/restaurant/occupancy/list",
+        method: "GET",
+      }).done((identities) => {
+        console.log(identities);
+
+        for (var each in identities) {
+          var newIdentity = identities[each];
+
+          $("#myTable").append(`<tr>
+                  <td>${newIdentity.tableId}</td>
+                  <td>${newIdentity.customerId}</td>
+                  <td>${newIdentity.booked}</td>
+                  <td><button type="button" onclick="del('${newIdentity._id}')" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></td>
+                  </tr>`);
+        }
+      });
+    }
+  </script> -->
+</html>
