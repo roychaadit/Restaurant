@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" href="./style.css">
-    <style>
-        .header {
-            text-align: center;
-        }
-    </style>
-  </head>
-  <body>
-    <div id="app">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    .header {
+      text-align: center;
+    }
+
+    .custBody {
+      background-image: url("images/wallpaper.png");
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: 1920px 1800px;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body class="custBody">
+  <div id="app">
     <div class="container">
       <div class="row">
         <div class="column">
@@ -52,110 +56,91 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title" style="font-size:30px; color: aliceblue;">Customer Details</h5>
-              <h5 class="card-subtitle mb-2 text-muted" style="color: aliceblue;">Enter details</h6>
+                <h5 class="card-subtitle mb-2 text-muted" style="color: aliceblue;">Enter details</h6>
 
-              <form action="/action_page.php">
-                <div class="form-group">
-                
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="name"
-                    v-model="customer.name"
-                    placeholder="Enter Customer's Name"
-                  />
-                </div>
-                <div class="form-group">
-                  
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="phone"
-                    v-model="customer.number"
-                    placeholder="Enter Customer's Number"
-                  />
-                </div>
-                <div class="form-group">
-                  
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="email"
-                    v-model="customer.email"
-                    placeholder="Enter Customer's Email"
-                  />
-                </div>
-              </form>
+                  <form action="/action_page.php">
+                    <div class="form-group">
+
+                      <input type="text" class="form-control" id="name" v-model="customer.name"
+                        placeholder="Enter Customer's Name" />
+                    </div>
+                    <div class="form-group">
+
+                      <input type="number" class="form-control" id="phone" v-model="customer.number"
+                        placeholder="Enter Customer's Number" />
+                    </div>
+                    <div class="form-group">
+
+                      <input type="email" class="form-control" id="email" v-model="customer.email"
+                        placeholder="Enter Customer's Email" />
+                    </div>
+                  </form>
             </div>
             <br>
             <div class="card-footer">
-                <button
-                  type="button"
-                  class="btn btn-success"
-                  @click="add()"
-                  value="Submit"
-                  name="Submit"
-                >
-                  Submit
+              <button type="button" class="btn btn-success" @click="add()" value="Submit" name="Submit">
+                Submit
+            </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
   </div>
-  </body>
+</body>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.0/vue.min.js" integrity="sha512-2v91ndX8jAw9J2IAZ4RnH+lKMOi0PzyFJ1i6D69Nx1RlY2UJpy6r1WIo35HrRkHG4ARj1Xl/xyoh0X9ze+6Y2w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
-  
-  <script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.0/vue.min.js"
+  integrity="sha512-2v91ndX8jAw9J2IAZ4RnH+lKMOi0PzyFJ1i6D69Nx1RlY2UJpy6r1WIo35HrRkHG4ARj1Xl/xyoh0X9ze+6Y2w=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
 
-var app = new Vue({
-      el: "#app",
-      data: {
-        items: [],
-        customer : {
-          name : "",
-          number :0,
-          email:""
-        }
+<script>
+
+  var app = new Vue({
+    el: "#app",
+    data: {
+      items: [],
+      customer: {
+        name: "",
+        number: 0,
+        email: ""
+      }
+    },
+    created() {
+      this.getList();
+    },
+    methods: {
+      getList() {
+        const self = this;
+        this.$http
+          .get("/restaurant/customer/list")
+          .then(function (response) {
+            self.items = response.body;
+          });
       },
-      created() {
-        this.getList();
+      del(tableId) {
+        const self = this;
+        this.$http
+          .delete("/restaurant/customer/" + tableId)
+          .then(function () {
+            self.getList();
+          });
       },
-      methods: {
-        getList() {
-          const self = this;
-          this.$http
-            .get("/restaurant/customer/list")
-            .then(function (response) {
-              self.items = response.body;
-            });
-        },
-        del(tableId) {
-          const self = this;
-          this.$http
-            .delete("/restaurant/customer/" + tableId)
-            .then(function () {
-              self.getList();
-            });
-        },
-        add() {
-          const self = this;
-          this.$http
-            .post("/restaurant/customer/add", {name:this.customer.name, number:this.customer.number, email:this.customer.email})
-            .then(function () {
-              self.getList();
-            });
-        },
+      add() {
+        const self = this;
+        this.$http
+          .post("/restaurant/customer/add", { name: this.customer.name, number: this.customer.number, email: this.customer.email })
+          .then(function () {
+            self.getList();
+          });
       },
-    });
+    },
+  });
 
 
 
-  </script>
-  
-  <!-- <script>
+</script>
+
+<!-- <script>
     load();
 
     function load() {
@@ -206,4 +191,5 @@ var app = new Vue({
         });
     }
   </script> -->
+
 </html>

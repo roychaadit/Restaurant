@@ -1,65 +1,66 @@
 .indexBody {
-    background-image: url("images/banner.jpg");
-    background-position: 50% 50%;
-    background-size: 1920px 1800px;
-   
-   }
-
-   .header1{
-    color: aliceblue;
-    margin: 30px 0;
-   }
-
-  .card-home{
-   
-    padding: 20px 0;
-    background-color: rgb(65, 60, 60)!important;
-    height: 250px;
-    border-radius: 15px!important;
-    
-  }
-
-  .icon-menu{
-    height: auto;
-    width: 96px;
-    text-align: center;
-  }
-
-  .button-home{
-    background-color: chartreuse !important;
-    border: none !important;
-    color: black !important;
-    width: 300px !important;
-    margin: 20px !important;
-  }
-
-  .menuForm{
-    width: 500px; 
-    background-color: rgb(65, 60, 60);
-    padding: 20px; 
-    border-radius: 10px;
-  }
-
-  .menuBody {
-    /* background-image: url("images/menuicon.jpg"); */
-    background-position: 50% 50%;
-    background-size: 1400px 1100px; 
-  }
-
-
-  /* Large desktops and laptops */
-@media (min-width: 1200px) {
+  background-image: url("images/banner.jpg");
+  background-position: 50% 50%;
+  background-size: 1920px 1800px;
 
 }
+
+.header1 {
+  color: aliceblue;
+  margin: 30px 0;
+}
+
+.card-home {
+
+  padding: 20px 0;
+  background-color: rgb(65, 60, 60) !important;
+  height: 250px;
+  border-radius: 15px !important;
+
+}
+
+.icon-menu {
+  height: auto;
+  width: 96px;
+  text-align: center;
+}
+
+.button-home {
+  background-color: chartreuse !important;
+  border: none !important;
+  color: black !important;
+  width: 300px !important;
+  margin: 20px !important;
+}
+
+.menuForm {
+  width: 500px;
+  background-color: rgb(65, 60, 60);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* .menuBody {
+  background-position: 50% 50%;
+    background-size: 1400px 1100px; 
+
+  background-image: url("images/wallpaper.png");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 1920px 1800px;
+  height: 100%;
+} */
+
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {}
 
 /* Landscape tablets and medium desktops */
-@media (min-width: 992px) and (max-width: 1199px) {
-
-}
+@media (min-width: 992px) and (max-width: 1199px) {}
 
 /* Portrait tablets and small desktops */
 @media (min-width: 768px) and (max-width: 991px) {
-  .button-home{
+  .button-home {
     background-color: chartreuse !important;
     border: none !important;
     color: black !important;
@@ -75,7 +76,7 @@
 
 /* Landscape phones and portrait tablets */
 @media (max-width: 767px) {
-  .button-home{
+  .button-home {
     background-color: chartreuse !important;
     border: none !important;
     color: black !important;
@@ -86,7 +87,7 @@
 
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
-  .button-home{
+  .button-home {
     background-color: chartreuse !important;
     border: none !important;
     color: black !important;
@@ -102,7 +103,7 @@
     background-image: url("images/banner.jpg");
     background-position: 50% 50%;
     background-size: 800px 600px;
-   
-   }
+
+  }
 
 }

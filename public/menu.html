@@ -1,174 +1,164 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="./style.css" />
 
-    <style>
-      .header {
-        text-align: center;
-      }
-    </style>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./style.css" />
 
-  <body class="menuBody">
-    <div id="app">
-      <div class="container">
-        <div class="row">
-          <div class="column">
-            <h1 class="header"><b>WELCOME TO ARC'S</b></h1>
-            <h2 class="header"><i>Quick food delivery!</i></h2>
-          </div>
+  <style>
+    .header {
+      text-align: center;
+    }
+
+    .menuBody {
+      background-image: url("images/wallpaper.png");
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: 1920px 1800px;
+      height: 100%;
+    }
+
+    /* .background {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      right: 100%;
+      bottom: 100%;
+      z-index: -1;
+      opacity: 10%;
+      height: 100%;
+      width: 100%
+    } */
+  </style>
+</head>
+
+<body class="menuBody">
+  <div id="app">
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          <h1 class="header"><b>WELCOME TO ARC'S</b></h1>
+          <h2 class="header"><i>Quick food delivery!</i></h2>
         </div>
+      </div>
 
-        <div class="row">
-          <div class="column">
-            <table class="table table-bordered">
-              <thead>
-                <th>Item Name</th>
-                <th>Item Description</th>
-                <th>Item Price</th>
-                <th>Remove Item</th>
-              </thead>
-              <tbody>
-                <tr v-for="item in items">
-                  <td>{{item.name}}</td>
-                  <td>{{item.description}}</td>
-                  <td>{{item.price}}</td>
-                  <td><button @click="del(item._id)">Remove</button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+      <div class="row">
+        <div class="column">
+          <table class="table table-bordered">
+            <thead>
+              <th>Item Name</th>
+              <th>Item Description</th>
+              <th>Item Price</th>
+              <th>Remove Item</th>
+            </thead>
+            <tbody>
+              <tr v-for="item in items">
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.price}}</td>
+                <td><button @click="del(item._id)">Remove</button></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
 
-        <div class="row">
-          <div class="column menuForm">
-            <div class="card">
-              <div class="card-body">
-                <h4 style="font-size: 30px; color: aliceblue">
-                  Order your food
-                </h4>
-                <h5 style="color: aliceblue">
-                  Use this form to order your food
-                </h5>
-                <form action="/action_page.php">
-                  <div class="form-group">
-                    <!-- <label for="Item Name">Item Name:</label> -->
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="name"
-                      v-model="menu.name"
-                      placeholder="Enter Item Name"
-                    />
-                  </div>
+      <div class="row">
+        <div class="column menuForm">
+          <div class="card">
+            <div class="card-body">
+              <h4 style="font-size: 30px; color: aliceblue">
+                Order your food
+              </h4>
+              <h5 style="color: aliceblue">
+                Use this form to order your food
+              </h5>
+              <form action="/action_page.php">
+                <div class="form-group">
+                  <!-- <label for="Item Name">Item Name:</label> -->
+                  <input type="text" class="form-control" id="name" v-model="menu.name" placeholder="Enter Item Name" />
+                </div>
 
-                  <div class="form-group">
-                    <!-- <label for="Item Description">Item Description:</label> -->
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="description"
-                      v-model="menu.description"
-                      placeholder="Enter Item Description"
-                    />
-                  </div>
+                <div class="form-group">
+                  <!-- <label for="Item Description">Item Description:</label> -->
+                  <input type="text" class="form-control" id="description" v-model="menu.description"
+                    placeholder="Enter Item Description" />
+                </div>
 
-                  <div class="form-group">
-                    <!-- <label for="Item Price">Item Price:</label> -->
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="price"
-                      v-model="menu.price"
-                      placeholder="Enter Item Price"
-                    />
-                  </div>
-                </form>
-              </div>
-              <div class="card-footer">
-                <button
-                  type="button"
-                  class="btn btn-success"
-                  @click="add()"
-                  value="Submit"
-                  name="Submit"
-                >
-                  Submit
-                </button>
-                <button onclick="load()">Refresh</button>
-              </div>
+                <div class="form-group">
+                  <!-- <label for="Item Price">Item Price:</label> -->
+                  <input type="number" class="form-control" id="price" v-model="menu.price"
+                    placeholder="Enter Item Price" />
+                </div>
+              </form>
+            </div>
+            <div class="card-footer">
+              <button type="button" class="btn btn-success" @click="add()" value="Submit" name="Submit">
+                Submit
+              </button>
+              <button onclick="load()">Refresh</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.0/vue.min.js"
-    integrity="sha512-2v91ndX8jAw9J2IAZ4RnH+lKMOi0PzyFJ1i6D69Nx1RlY2UJpy6r1WIo35HrRkHG4ARj1Xl/xyoh0X9ze+6Y2w=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  ></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.0/vue.min.js"
+  integrity="sha512-2v91ndX8jAw9J2IAZ4RnH+lKMOi0PzyFJ1i6D69Nx1RlY2UJpy6r1WIo35HrRkHG4ARj1Xl/xyoh0X9ze+6Y2w=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
 
-  <script>
-    var app = new Vue({
-      el: "#app",
-      data: {
-        items: [],
-        menu: {
-          name: "",
-          description: "",
-          price: 0,
-        },
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      items: [],
+      menu: {
+        name: "",
+        description: "",
+        price: 0,
       },
-      created() {
-        this.getList();
+    },
+    created() {
+      this.getList();
+    },
+    methods: {
+      getList() {
+        const self = this;
+        this.$http.get("/restaurant/menu/list").then(function (response) {
+          self.items = response.body;
+        });
       },
-      methods: {
-        getList() {
-          const self = this;
-          this.$http.get("/restaurant/menu/list").then(function (response) {
-            self.items = response.body;
+      del(tableId) {
+        const self = this;
+        this.$http
+          .delete("/restaurant/menu/item/" + tableId)
+          .then(function () {
+            self.getList();
           });
-        },
-        del(tableId) {
-          const self = this;
-          this.$http
-            .delete("/restaurant/menu/item/" + tableId)
-            .then(function () {
-              self.getList();
-            });
-        },
-        add() {
-          const self = this;
-          this.$http
-            .post("/restaurant/menu/add", {
-              name: this.menu.name,
-              description: this.menu.description,
-              price: this.menu.price,
-            })
-            .then(function () {
-              self.getList();
-            });
-        },
       },
-    });
-  </script>
+      add() {
+        const self = this;
+        this.$http
+          .post("/restaurant/menu/add", {
+            name: this.menu.name,
+            description: this.menu.description,
+            price: this.menu.price,
+          })
+          .then(function () {
+            self.getList();
+          });
+      },
+    },
+  });
+</script>
 
-  <!-- <script>
+<!-- <script>
     load();
     function load() {
       $("#myTable").html(` <thead>
@@ -219,4 +209,5 @@
       });
     }
   </script> -->
+
 </html>
